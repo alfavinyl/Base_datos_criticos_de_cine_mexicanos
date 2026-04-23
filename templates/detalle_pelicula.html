@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pelicula.titulo }}</title>
+</head>
+<body>
+    <h1>{{ pelicula.titulo }}</h1>
+    
+    {% if pelicula.titulo_original %}
+        <p><strong>Título original:</strong> {{ pelicula.titulo_original }}</p>
+    {% endif %}
+    
+    <p><strong>Año:</strong> {{ pelicula.anio }}</p>
+    <p><strong>País:</strong> {{ pelicula.pais }}</p>
+    <p><strong>Director:</strong> {{ pelicula.director }}</p>
+    
+    <h2>Textos relacionados</h2>
+    {% if textos %}
+        <ul>
+        {% for texto in textos %}
+            <li><a href="/texto/{{ texto.id }}">{{ texto.titulo }}</a> ({{ texto.tipo_texto }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay textos asociados a esta película.</p>
+    {% endif %}
+    
+    <p><a href="/">Volver al buscador</a></p>
+</body>
+</html>

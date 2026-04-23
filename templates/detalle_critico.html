@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ critico.nombre }} {{ critico.apellidos }}</title>
+</head>
+<body>
+    <h1>{{ critico.nombre }} {{ critico.apellidos }}</h1>
+    
+    {% if critico.seudonimo %}
+        <p><strong>Seudónimo:</strong> {{ critico.seudonimo }}</p>
+    {% endif %}
+    
+    <p><strong>Nacionalidad:</strong> {{ critico.nacionalidad }}</p>
+    
+    {% if critico.fecha_nacimiento %}
+        <p><strong>Nacimiento:</strong> {{ critico.fecha_nacimiento }}</p>
+    {% endif %}
+    
+    {% if critico.fecha_fallecimiento %}
+        <p><strong>Fallecimiento:</strong> {{ critico.fecha_fallecimiento }}</p>
+    {% endif %}
+    
+    {% if critico.biografia %}
+        <h2>Biografía</h2>
+        <p>{{ critico.biografia }}</p>
+    {% endif %}
+    
+    <h2>Textos escritos</h2>
+    {% if textos %}
+        <ul>
+        {% for texto in textos %}
+            <li><a href="/texto/{{ texto.id }}">{{ texto.titulo }}</a> ({{ texto.tipo_texto }}, {{ texto.fecha }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay textos de este crítico.</p>
+    {% endif %}
+    
+    <p><a href="/">Volver al buscador</a></p>
+</body>
+</html>

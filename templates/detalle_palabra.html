@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ palabra.etiqueta }}</title>
+</head>
+<body>
+    <h1>Palabra clave: {{ palabra.etiqueta }}</h1>
+    
+    <h2>Textos con esta palabra</h2>
+    {% if palabra.textos %}
+        <ul>
+        {% for texto in palabra.textos %}
+            <li><a href="/texto/{{ texto.id }}">{{ texto.titulo }}</a> ({{ texto.tipo_texto }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay textos con esta palabra clave.</p>
+    {% endif %}
+    
+    <p><a href="/">Volver al buscador</a></p>
+</body>
+</html>

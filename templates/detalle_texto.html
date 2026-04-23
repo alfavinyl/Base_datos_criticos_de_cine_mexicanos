@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ texto.titulo }}</title>
+</head>
+<body>
+    <h1>{{ texto.titulo }}</h1>
+    
+    <p><strong>Tipo:</strong> {{ texto.tipo_texto }}</p>
+    
+    {% if texto.fecha %}
+        <p><strong>Fecha:</strong> {{ texto.fecha }}</p>
+    {% endif %}
+    
+    <p><strong>Crítico:</strong> 
+        <a href="/critico/{{ texto.critico.id }}">{{ texto.critico.nombre }} {{ texto.critico.apellidos }}</a>
+    </p>
+    
+    <p><strong>Publicación:</strong> 
+        <a href="/publicacion/{{ texto.publicacion.id }}">{{ texto.publicacion.nombre }}</a> ({{ texto.publicacion.tipo }})
+    </p>
+    
+    {% if texto.seccion %}
+        <p><strong>Sección:</strong> {{ texto.seccion }}</p>
+    {% endif %}
+    
+    {% if texto.pagina %}
+        <p><strong>Página:</strong> {{ texto.pagina }}</p>
+    {% endif %}
+    
+    {% if texto.url %}
+        <p><strong>URL:</strong> <a href="{{ texto.url }}" target="_blank">{{ texto.url }}</a></p>
+    {% endif %}
+    
+    {% if texto.resumen %}
+        <h2>Resumen</h2>
+        <p>{{ texto.resumen }}</p>
+    {% endif %}
+    
+    {% if texto.texto_completo %}
+        <h2>Texto completo</h2>
+        <div>{{ texto.texto_completo }}</div>
+    {% endif %}
+    
+    <h2>Películas relacionadas</h2>
+    {% if texto.peliculas %}
+        <ul>
+        {% for pelicula in texto.peliculas %}
+            <li><a href="/pelicula/{{ pelicula.id }}">{{ pelicula.titulo }}</a> ({{ pelicula.anio }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay películas asociadas.</p>
+    {% endif %}
+    
+    <h2>Palabras clave</h2>
+    {% if texto.palabras_clave %}
+        <ul>
+        {% for palabra in texto.palabras_clave %}
+            <li><a href="/palabra_clave/{{ palabra.id }}">{{ palabra.etiqueta }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay palabras clave.</p>
+    {% endif %}
+    
+    <p><a href="/">Volver al buscador</a></p>
+</body>
+</html>

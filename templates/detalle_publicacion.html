@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{{ publicacion.nombre }}</title>
+</head>
+<body>
+    <h1>{{ publicacion.nombre }}</h1>
+    
+    <p><strong>Tipo:</strong> {{ publicacion.tipo }}</p>
+    <p><strong>País:</strong> {{ publicacion.pais }}</p>
+    
+    {% if publicacion.anio_inicio %}
+        <p><strong>Año de inicio:</strong> {{ publicacion.anio_inicio }}</p>
+    {% endif %}
+    
+    {% if publicacion.anio_cierre %}
+        <p><strong>Año de cierre:</strong> {{ publicacion.anio_cierre }}</p>
+    {% endif %}
+    
+    {% if publicacion.descripcion %}
+        <h2>Descripción</h2>
+        <p>{{ publicacion.descripcion }}</p>
+    {% endif %}
+    
+    <h2>Textos publicados</h2>
+    {% if publicacion.textos %}
+        <ul>
+        {% for texto in publicacion.textos %}
+            <li><a href="/texto/{{ texto.id }}">{{ texto.titulo }}</a> ({{ texto.tipo_texto }}, {{ texto.fecha }})</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay textos en esta publicación.</p>
+    {% endif %}
+    
+    <p><a href="/">Volver al buscador</a></p>
+</body>
+</html>

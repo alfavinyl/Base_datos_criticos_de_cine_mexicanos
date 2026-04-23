@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados para "{{ busqueda }}"</title>
+    <style>
+        .grupo { margin-bottom: 2em; }
+        .grupo h2 { background-color: #f0f0f0; padding: 0.3em; }
+        ul { list-style-type: none; padding-left: 1em; }
+        li { margin-bottom: 0.5em; }
+        .descripcion { font-size: 0.9em; color: #555; }
+    </style>
+</head>
+<body>
+    <h1>Resultados para: "{{ busqueda }}"</h1>
+    
+    {% if resultados %}
+        {% for tipo, items in resultados.items() %}
+            <div class="grupo">
+                <h2>{{ nombres_tipo.get(tipo, tipo) }} ({{ items|length }})</h2>
+                <ul>
+                {% for item in items %}
+                    <li>
+                        <a href="/{{ tipo }}/{{ item.id }}">{{ item.nombre }}</a>
+                        {% if item.descripcion %}
+                            <div class="descripcion">{{ item.descripcion }}</div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No se encontraron resultados.</p>
+    {% endif %}
+    
+    <p><a href="/">Nueva búsqueda</a></p>
+</body>
+</html>
